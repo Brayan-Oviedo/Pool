@@ -28,8 +28,9 @@ public class DaoTicketMysql implements DaoTicket {
         paramSource.addValue("id", id);
         var existe = repositorioTicket.existePorId(id);
 
-        if(!existe) return null;
-
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlObtenerPorId, paramSource, new MapeoTicket());
+        if(existe) {
+            return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlObtenerPorId, paramSource, new MapeoTicket());
+        }
+        return null;
     }
 }

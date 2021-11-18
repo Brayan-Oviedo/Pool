@@ -26,6 +26,6 @@ public class DaoClienteMysql implements DaoCliente {
         var paramSource = new MapSqlParameterSource();
         paramSource.addValue("identificacion", identificacion);
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlObtenerPorIdentificacion, paramSource, new MapeoCliente());
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlObtenerPorIdentificacion, paramSource, new MapeoCliente());
     }
 }

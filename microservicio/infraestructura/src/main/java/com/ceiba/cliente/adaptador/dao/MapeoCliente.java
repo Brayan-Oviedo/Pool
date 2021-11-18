@@ -4,23 +4,18 @@ import com.ceiba.cliente.modelo.dto.DtoCliente;
 import com.ceiba.infraestructura.jdbc.MapperResult;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class MapeoCliente implements ResultSetExtractor<DtoCliente>, MapperResult {
+public class MapeoCliente implements RowMapper<DtoCliente>, MapperResult {
 
     @Override
-    public DtoCliente extractData(ResultSet resultSet) throws SQLException, DataAccessException {
-        DtoCliente cliente = null;
+    public DtoCliente mapRow(ResultSet resultSet, int rowNum) throws SQLException {
+        var identificacion = resultSet.getString("identificacion");
+        var fechaNacimiento = extraerLocalDate(resultSet, "fecha_nacimiento");
 
-        if(resultSet.next()) {
-            var identificacion = resultSet.getString("identificacion");
-            var fechaNacimiento = extraerLocalDate(resultSet, "fecha_nacimiento");
-
-            cliente = new DtoCliente(identificacion, fechaNacimiento);
-        }
-
-        return cliente;
+        return new DtoCliente(identificacion, fechaNacimiento);
     }
 }

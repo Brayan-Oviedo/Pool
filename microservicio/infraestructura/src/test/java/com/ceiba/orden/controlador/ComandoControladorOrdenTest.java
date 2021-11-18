@@ -2,6 +2,7 @@ package com.ceiba.orden.controlador;
 
 import com.ceiba.ApplicationMock;
 import com.ceiba.cliente.puerto.dao.DaoCliente;
+import com.ceiba.cliente.servicio.testDataBuilder.ComandoClienteTestDataBuilder;
 import com.ceiba.orden.puerto.dao.DaoOrden;
 import com.ceiba.orden.servicio.testDataBuilder.ComandoOrdenTestDataBuilder;
 import com.ceiba.ticket.modelo.dto.DtoTicket;
@@ -50,7 +51,8 @@ public class ComandoControladorOrdenTest {
     void deberiaProcesarUnaOrden() throws Exception {
 
         // Arrange
-        var orden = new ComandoOrdenTestDataBuilder().build();
+        var cliente = new ComandoClienteTestDataBuilder().conIdentificacion("1007").build();
+        var orden = new ComandoOrdenTestDataBuilder().conCliente(cliente).build();
 
         // Act - Assert
         var resultadoCrearOrden = mockMvc.perform(post("/ordenes")
@@ -66,6 +68,7 @@ public class ComandoControladorOrdenTest {
 
         assertNotNull(daoCliente.obtenerPorIdentificacion(orden.getCliente().getIdentificacion()));
         assertNotNull(daoTicket.obtenerPorId(resultado.getId()));
+        assertEquals(1, daoOrden.listarPorCliente(orden.getCliente().getIdentificacion()).size());
     }
 
     @Test

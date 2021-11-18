@@ -10,8 +10,6 @@ public class ServicioGenerarTicket {
     private static final int TIEMPO_BASE_SERVICIO = 4;
     private static final float COSTO_HORA_EXTRA = 1000;
 
-    public ServicioGenerarTicket() {  }
-
     public Ticket ejecutar(Orden orden, Long ordenId, float costoBase) {
         return new Ticket(null,
                 calcularCostoTotal(costoBase, orden.getTiempoExtra()),

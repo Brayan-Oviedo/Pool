@@ -31,6 +31,7 @@ public class DaoTicketMysql implements DaoTicket {
         if(existe) {
             return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlObtenerPorId, paramSource, new MapeoTicket());
         }
+
         return null;
     }
 }

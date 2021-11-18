@@ -1,7 +1,5 @@
 package com.ceiba.orden.comando.fabrica;
 
-
-import com.ceiba.cliente.comando.fabrica.FabricaCliente;
 import com.ceiba.orden.comando.ComandoOrden;
 import com.ceiba.orden.modelo.entidad.Orden;
 import org.springframework.stereotype.Component;

@@ -43,8 +43,10 @@ public class DaoOrdenMysql implements DaoOrden {
         paramSource.addValue("id", id);
         var existe = this.repositorioOrden.existePorId(id);
 
-        if(!existe) return null;
+        if(!existe) {
+            return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscarPorId, paramSource, new MapeoOrden());
+        }
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscarPorId, paramSource, new MapeoOrden());
+        return null;
     }
 }

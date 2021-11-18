@@ -4,7 +4,7 @@ buildscript {
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		classpath 'org.owasp:dependency-check-gradle:6.2.2'
+		classpath 'org.owasp:dependency-check-gradle:6.5.0.1'
 	}
 }
 
@@ -23,7 +23,7 @@ allprojects {
 	apply plugin: 'org.owasp.dependencycheck'
 
 	project.ext.apachecommons = [
-			"commons-io:commons-io:2.6",
+			"commons-io:commons-io:2.11.0",
 			"org.apache.commons:commons-lang3:3.7"
 	]
 	
@@ -36,7 +36,10 @@ allprojects {
 	project.ext.lombok = ["org.projectlombok:lombok:1.18.20"]
 	
 	project.ext.springboottest = ["org.springframework.boot:spring-boot-starter-test:${springBootVersion}"]
-	project.ext.springbootweb = ["org.springframework.boot:spring-boot-starter-web:${springBootVersion}"]
+	project.ext.springbootweb = [
+									"org.springframework.boot:spring-boot-starter-web:${springBootVersion}",
+									"com.google.guava:guava:31.0.1-jre"
+								]
 	project.ext.springdevtools = ["org.springframework.boot:spring-boot-devtools:${springBootVersion}"]
 	project.ext.springbootundertow = ["org.springframework.boot:spring-boot-starter-undertow:${springBootVersion}"]
 	project.ext.springbootjasypt = ['com.github.ulisesbocchio:jasypt-spring-boot-starter:2.1.1']

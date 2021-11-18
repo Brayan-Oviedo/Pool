@@ -37,8 +37,7 @@ allprojects {
 	
 	project.ext.springboottest = ["org.springframework.boot:spring-boot-starter-test:${springBootVersion}"]
 	project.ext.springbootweb = [
-									"org.springframework.boot:spring-boot-starter-web:${springBootVersion}",
-									"com.google.guava:guava:31.0.1-jre"
+									"org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
 								]
 	project.ext.springdevtools = ["org.springframework.boot:spring-boot-devtools:${springBootVersion}"]
 	project.ext.springbootundertow = ["org.springframework.boot:spring-boot-starter-undertow:${springBootVersion}"]
@@ -93,7 +92,17 @@ dependencies {
 }
 
 bootJar {
-	mainClassName = 'com.ceiba.Application'
-    baseName = 'pool'
-    version =  version
+	mainClass.set('com.ceiba.Application')
+	launchScript()
 }
+
+springBoot {
+	buildInfo {
+		properties {
+			name = "pool"
+			version = version
+		}
+	}
+}
+
+

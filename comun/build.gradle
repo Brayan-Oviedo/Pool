@@ -12,8 +12,11 @@ allprojects {
 									"commons-io:commons-io:2.7",
 									"org.apache.commons:commons-lang3:3.7"
 								]
-	
-	project.ext.springbootweb = ["org.springframework.boot:spring-boot-starter-web:${springBootVersion}"]
+
+	project.ext.springbootweb = [
+									"org.springframework.boot:spring-boot-starter-web:${springBootVersion}",
+									"com.google.guava:guava:31.0.1-jre"
+								]
 	project.ext.springdevtools = ["org.springframework.boot:spring-boot-devtools:${springBootVersion}"]
 	
 	project.ext.springbootjdbc = ["org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}"]
